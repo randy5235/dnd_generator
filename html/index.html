@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Site for Stuff</title>
+  <title>D&D Generator Prototyping</title>
 </head>
 <body>
   <div id="main">
@@ -14,5 +14,18 @@
       even more
     </p>
   </div>
+  <div id="rumor">
+    <button type="button" onclick="callRumorEndpoint()">Get Rumor!</button>
+    <div id="response">
+    </div>
+  </div>
+  <script>
+    async function callRumorEndpoint() {
+      const payload = await fetch('./rumor');
+      const rumor = await payload.json();
+      console.log(rumor)
+      document.getElementById("response").innerHTML=rumor.description;
+    }
+  </script>
 </body>
 </html>
