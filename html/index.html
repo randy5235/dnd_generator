@@ -7,14 +7,17 @@
   <title>D&D Generator Prototyping</title>
 </head>
 <body>
-  <div id="main">
+  <div id="main" style="display: inline-block; float: none; border: 1px solid black;">
     This is the main div
     <p>
       it has new stuff in it. More stuff
       even more
     </p>
   </div>
-  <div id="rumor">
+  <div id="diceRoll" style="float: right; border: 1px solid black; height: 50px; width: 50px;">
+    
+  </div>
+  <div id="rumor" style="clear: both; border: 1px solid black;";>
     <button type="button" onclick="callRumorEndpoint()">Get Rumor!</button>
     <div id="response">
     </div>
@@ -22,9 +25,10 @@
   <script>
     async function callRumorEndpoint() {
       const payload = await fetch('./rumor');
-      const rumor = await payload.json();
-      console.log(rumor)
-      document.getElementById("response").innerHTML=rumor.description;
+      const {roll, rumor} = await payload.json(); // {"roll": 12, "rumor": "This is description"}
+      console.log(roll)
+      document.getElementById("response").innerHTML=rumor;
+      document.getElementById("diceRoll").innerHTML=roll;
     }
   </script>
 </body>
